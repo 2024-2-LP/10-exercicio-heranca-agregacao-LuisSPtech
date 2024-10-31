@@ -66,18 +66,25 @@ public class Consultoria {
     }
 
     public Desenvolvedor buscarMenorSalario() {
+        if (desenvolvedores == null || desenvolvedores.isEmpty()) {
+            return null;
+        }
+
         Double salario = desenvolvedores.get(0).calcularSalario();
         Desenvolvedor nomeDesenvolvedor = desenvolvedores.get(0);
-        if(desenvolvedores != null) {
-            for (Desenvolvedor desenvolvedor : desenvolvedores) {
-                if (desenvolvedor.calcularSalario() < salario) {
-                    salario = desenvolvedor.calcularSalario();
-                    nomeDesenvolvedor = desenvolvedor;
-                }
+
+
+        for (Desenvolvedor desenvolvedor : desenvolvedores) {
+            if (desenvolvedor.calcularSalario() < salario) {
+                salario = desenvolvedor.calcularSalario();
+                nomeDesenvolvedor = desenvolvedor;
             }
         }
+
         return nomeDesenvolvedor;
     }
+
+
     public List<Desenvolvedor> buscarPorTecnologia(String tecnologia) {
         List<Desenvolvedor> desenvolvedoresFiltrados = new ArrayList<>();
 
@@ -112,7 +119,12 @@ public class Consultoria {
     }
 
     public Double getTotalSalariosPorTecnologia(String tecnologia){
-
+        Double salario = 0.0;
+        List<Desenvolvedor> buscarTecnologia = buscarPorTecnologia(tecnologia);
+        for (Desenvolvedor desenvolvedor : buscarTecnologia) {
+            salario += desenvolvedor.calcularSalario();
+        }
+        return salario;
     }
 
 
