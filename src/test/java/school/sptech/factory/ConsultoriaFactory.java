@@ -1,7 +1,6 @@
 package school.sptech.factory;
 
 import school.sptech.Consultoria;
-import school.sptech.Desenvolvedor;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
